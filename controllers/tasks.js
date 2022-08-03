@@ -22,7 +22,7 @@ const getTask = async (req,res) => {
         const {id:taskID} = req.params;
         const task = await Task.findOne({_id:taskID});
         if(!task){
-            return res.status(200).json({msg: `The is no id with: ${task}`});
+            return res.status(404).json({msg: `The is no id with: ${task}`});
         }
         res.status(200).json({task});
     } catch(error) {
@@ -41,7 +41,7 @@ const updateTask = async (req,res) => {
         });
 
         if(!task){
-            return res.status(200).json({msg: `The is no id with: ${task}`});
+            return res.status(404).json({msg: `The is no id with: ${task}`});
         }
 
         res.status(200).json({task});
@@ -56,7 +56,7 @@ const deleteTask = async (req,res) => {
         const {id:taskID} = req.params;
         const task = await Task.findOneAndDelete({_id:taskID});
         if(!task){
-            return res.status(200).json({msg: `The is no id with: ${task}`});
+            return res.status(404).json({msg: `The is no id with: ${task}`});
         }
         res.status(200).json({task});
     } catch(error) {
